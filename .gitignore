@@ -1,6 +1,14 @@
 ```
 # Dependencies
 node_modules/
+.next
+.next/
+.next/**
+.next/**/**
+.next/**/**/**
+.next/**/**/**/**
+.next/**/**/**/**/**
+.next/**/**/**/**/**/**
 
 # Python
 __pycache__/
