@@ -12,7 +12,11 @@
   "dependencies": {
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "@tanstack/react-table": "^8.20.5",
+    "lucide-react": "^0.460.0",
+    "framer-motion": "^11.11.17",
+    "@supabase/supabase-js": "^2.46.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
