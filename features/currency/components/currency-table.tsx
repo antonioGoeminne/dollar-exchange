@@ -24,7 +24,7 @@ function PercentBadge({ value = 0 }: { value: number }) {
 
   return (
     <span
-      className={`inline-flex min-w-[64px] items-center justify-end rounded-full px-2 py-1 text-xs font-medium ${color}`}
+      className={`inline-flex min-w-[48px] md:min-w-[64px] items-center justify-end rounded-full px-1 md:px-2 py-1  text-xs font-medium ${color}`}
     >
       {isNegative ? "" : "+"}
       {Number(value).toFixed(2)}%
@@ -65,7 +65,7 @@ const columns: ColumnDef<Dollar>[] = [
               />
             </div>
           )}
-          <div className="text-sm  text-slate-800">{coin.name}</div>
+          <div className=" text-xs md:text-sm text-slate-800">{coin.name}</div>
         </div>
       );
     },
@@ -76,7 +76,7 @@ const columns: ColumnDef<Dollar>[] = [
     cell: (info) => (
       <>
         {info.getValue<string>() && (
-          <span className="text-sm text-slate-900">
+          <span className=" text-xs md:text-sm text-slate-900">
             ${info.getValue<string>()}
           </span>
         )}
@@ -88,7 +88,9 @@ const columns: ColumnDef<Dollar>[] = [
     header: "Venta",
     meta: { className: "w-[1%] whitespace-nowrap" },
     cell: (info) => (
-      <span className="text-sm text-slate-900">${info.getValue<string>()}</span>
+      <span className="text-xs md:text-sm text-slate-900">
+        ${info.getValue<string>()}
+      </span>
     ),
   },
   {
