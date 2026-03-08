@@ -62,9 +62,7 @@ const columns: ColumnDef<Dollar>[] = [
           <div
             className={`absolute left-0 top-0 h-full w-0.5 md:w-1 ${getRefColor(coin.refName ?? "")} py-1`}
           ></div>
-          <div className=" text-xs md:text-base text-slate-800">
-            {coin.name}
-          </div>
+          <div className=" text-xs md:text-sm text-slate-800">{coin.name}</div>
         </div>
       );
     },
@@ -75,7 +73,7 @@ const columns: ColumnDef<Dollar>[] = [
     cell: (info) => (
       <>
         {info.getValue<string>() && (
-          <span className=" text-xs md:text-base text-slate-900">
+          <span className=" text-xs md:text-sm text-slate-900">
             ${info.getValue<string>()}
           </span>
         )}
@@ -87,7 +85,7 @@ const columns: ColumnDef<Dollar>[] = [
     header: "Venta",
     meta: { className: "w-[1%] whitespace-nowrap" },
     cell: (info) => (
-      <span className="text-xs md:text-base text-slate-900">
+      <span className="text-xs md:text-sm text-slate-900">
         ${info.getValue<string>()}
       </span>
     ),

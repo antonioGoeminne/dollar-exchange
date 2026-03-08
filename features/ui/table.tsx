@@ -35,7 +35,7 @@ export function Table<T>({
         <div className="rounded-md shadow-sm">
           <div className="overflow-hidden rounded-md border border-slate-200/80 bg-white/80 backdrop-blur">
             <table className="min-w-full border-collapse text-sm">
-              <thead className="bg-white border-b border-slate-200/70 text-xs md:text-sm font-semibold text-slate-500">
+              <thead className="bg-white border-b border-slate-200/70 text-xs font-semibold text-slate-500">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -72,7 +72,7 @@ export function Table<T>({
                       return (
                         <td
                           key={cell.id}
-                          className={`whitespace-nowrap px-1 md:px-4 py-1 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
+                          className={`whitespace-nowrap px-2 md:px-4 py-2 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
