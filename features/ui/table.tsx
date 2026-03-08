@@ -63,7 +63,7 @@ export function Table<T>({
                 {table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="bg-white/80 transition-colors hover:bg-neutral-50/80"
+                    className="bg-white/80 transition-colors hover:bg-neutral-50/80 relative"
                   >
                     {row.getVisibleCells().map((cell) => {
                       const meta = cell.column.columnDef.meta as
@@ -72,7 +72,7 @@ export function Table<T>({
                       return (
                         <td
                           key={cell.id}
-                          className={`whitespace-nowrap px-1 md:px-4 py-1 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
+                          className={`whitespace-nowrap px-2 md:px-4 py-2 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
                         >
                           {flexRender(
                             cell.column.columnDef.cell,

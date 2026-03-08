@@ -1,6 +1,7 @@
 import {
   bigserial,
   date,
+  integer,
   numeric,
   pgTable,
   timestamp,
@@ -18,4 +19,5 @@ export const dollarInfo = pgTable("dollar_info", {
   purchasePrice: numeric("purchase_price", { precision: 18, scale: 4 }),
   salePrice: numeric("sale_price", { precision: 18, scale: 4 }),
   refName: varchar("ref_name", { length: 255 }),
+  ranking: integer("ranking"),
 });
