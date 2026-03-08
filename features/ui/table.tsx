@@ -35,7 +35,7 @@ export function Table<T>({
         <div className="rounded-md shadow-sm">
           <div className="overflow-hidden rounded-md border border-slate-200/80 bg-white/80 backdrop-blur">
             <table className="min-w-full border-collapse text-sm">
-              <thead className="bg-white border-b border-slate-200/70 text-xs font-semibold text-slate-500">
+              <thead className="bg-white border-b border-slate-200/70 text-xs md:text-sm font-semibold text-slate-500">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -63,7 +63,7 @@ export function Table<T>({
                 {table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="bg-white/80 transition-colors hover:bg-neutral-50/80"
+                    className="bg-white/80 transition-colors hover:bg-neutral-50/80 relative"
                   >
                     {row.getVisibleCells().map((cell) => {
                       const meta = cell.column.columnDef.meta as
