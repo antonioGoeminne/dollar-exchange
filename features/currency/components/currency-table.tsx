@@ -3,6 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import useSWR from "swr";
 import { Table } from "@/features/ui/table";
+import { formatPrice } from "@/lib/prices";
 
 export type Dollar = {
   id: number;
@@ -74,7 +75,7 @@ const columns: ColumnDef<Dollar>[] = [
       <>
         {info.getValue<string>() && (
           <span className=" text-xs md:text-sm text-slate-900">
-            ${info.getValue<string>()}
+            ${formatPrice(info.getValue<string>())}
           </span>
         )}
       </>
@@ -86,15 +87,19 @@ const columns: ColumnDef<Dollar>[] = [
     meta: { className: "w-[1%] whitespace-nowrap" },
     cell: (info) => (
       <span className="text-xs md:text-sm text-slate-900">
-        ${info.getValue<string>()}
+        ${formatPrice(info.getValue<string>())}
       </span>
     ),
   },
   {
-    accessorKey: "change1h",
+    accessorKey: "exchangeRate",
     header: "%",
     meta: { align: "right" as const },
-    cell: (info) => <PercentBadge value={info.getValue<number>()} />,
+    cell: (info) => {
+      const raw = info.getValue<string | null>();
+      const value = raw != null && raw !== "" ? Number(raw) : 0;
+      return <PercentBadge value={value} />;
+    },
   },
 ];
 
