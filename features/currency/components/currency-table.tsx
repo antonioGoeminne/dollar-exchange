@@ -17,6 +17,7 @@ export type Dollar = {
   salePrice: string | null;
   refName: string | null;
   change1h?: number;
+  description: string | null;
 };
 
 function PercentBadge({ value = 0 }: { value: number }) {
@@ -27,12 +28,44 @@ function PercentBadge({ value = 0 }: { value: number }) {
     : isNegative
       ? "text-red-500"
       : "text-emerald-500";
-  const arrow = isZero ? null : isNegative ? "▼" : "▲";
+  const arrow = isZero ? null : isNegative ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-3"
+    >
+      <title>Arrow down</title>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+      />
+    </svg>
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className="size-3"
+    >
+      <title>Arrow up</title>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+      />
+    </svg>
+  );
   const display = `${Number(value).toFixed(2)}%`;
 
   return (
     <span
-      className={`inline-flex items-center justify-end gap-0.5 text-xs font-semibold tabular-nums ${color}`}
+      className={`inline-flex items-center justify-end gap-0.5 text-xs font-light tabular-nums ${color}`}
     >
       {arrow != null && <span aria-hidden>{arrow}</span>}
       {display}
@@ -40,39 +73,28 @@ function PercentBadge({ value = 0 }: { value: number }) {
   );
 }
 
-const refColors: Record<string, string> = {
-  blue: "bg-blue-300",
-  official: "bg-emerald-300",
-  crypto: "bg-violet-300",
-  mep: "bg-amber-300",
-  card: "bg-rose-300",
-  ccl: "bg-slate-300",
-};
-
-function getRefColor(coin: string) {
-  return refColors[coin] ?? "bg-slate-200";
-}
-
 const columns: ColumnDef<Dollar>[] = [
   {
     id: "name",
-    header: "Nombre",
+    header: "COTIZACIÓN",
     cell: ({ row }) => {
       const coin = row.original;
-
       return (
-        <div className="flex items-center gap-3">
-          <div
-            className={`absolute left-0 top-0 h-full w-0.5 md:w-1 ${getRefColor(coin.refName ?? "")} py-1`}
-          ></div>
-          <div className=" text-xs md:text-sm text-slate-800">{coin.name}</div>
+        <div className="flex flex-col gap-0.5">
+          <span className=" text-xs lg:text-sm  font-semibold text-slate-700">
+            {coin.name}
+          </span>
+          <span className="text-[11px] lg:text-xs font-semibold text-slate-400">
+            {coin.description}
+          </span>
         </div>
       );
     },
   },
   {
     accessorKey: "purchasePrice",
-    header: "Compra",
+    header: "COMPRA",
+    meta: { align: "right" as const },
     cell: (info) => {
       const row = info.row.original;
       const price = info.getValue<string>();
@@ -83,7 +105,7 @@ const columns: ColumnDef<Dollar>[] = [
       return (
         <div className="flex flex-col items-end gap-0.5">
           {price && (
-            <span className="text-xs md:text-sm text-slate-900">
+            <span className=" text-xs lg:text-sm  text-slate-900">
               ${formatPrice(price)}
             </span>
           )}
@@ -94,8 +116,8 @@ const columns: ColumnDef<Dollar>[] = [
   },
   {
     accessorKey: "salePrice",
-    header: "Venta",
-    meta: { className: "w-[1%] whitespace-nowrap" },
+    header: "VENTA",
+    meta: { align: "right" as const, className: "w-[1%] whitespace-nowrap" },
     cell: (info) => {
       const row = info.row.original;
       const price = info.getValue<string>();
@@ -105,7 +127,7 @@ const columns: ColumnDef<Dollar>[] = [
           : 0;
       return (
         <div className="flex flex-col items-end gap-0.5">
-          <span className="text-xs md:text-sm text-slate-900">
+          <span className=" text-xs lg:text-sm  font-semibold text-slate-900">
             ${formatPrice(price)}
           </span>
           <PercentBadge value={value} />
