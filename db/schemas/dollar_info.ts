@@ -14,6 +14,14 @@ export const dollarInfo = pgTable("dollar_info", {
     .defaultNow()
     .notNull(),
   exchangeRate: numeric("exchange_rate", { precision: 18, scale: 4 }),
+  purchaseExchangeRate: numeric("purchase_exchange_rate", {
+    precision: 18,
+    scale: 4,
+  }),
+  salesExchangeRate: numeric("sales_exchange_rate", {
+    precision: 18,
+    scale: 4,
+  }),
   date: date("date"),
   name: varchar("name", { length: 255 }),
   purchasePrice: numeric("purchase_price", { precision: 18, scale: 4 }),
