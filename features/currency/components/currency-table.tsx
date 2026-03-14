@@ -9,6 +9,8 @@ export type Dollar = {
   id: number;
   createdAt: string;
   exchangeRate: string | null;
+  purchaseExchangeRate: string | null;
+  salesExchangeRate: string | null;
   date: string | null;
   name: string | null;
   purchasePrice: string | null;
@@ -71,25 +73,45 @@ const columns: ColumnDef<Dollar>[] = [
   {
     accessorKey: "purchasePrice",
     header: "Compra",
-    cell: (info) => (
-      <>
-        {info.getValue<string>() && (
-          <span className=" text-xs md:text-sm text-slate-900">
-            ${formatPrice(info.getValue<string>())}
-          </span>
-        )}
-      </>
-    ),
+    cell: (info) => {
+      const row = info.row.original;
+      const price = info.getValue<string>();
+      const value =
+        row.purchaseExchangeRate != null && row.purchaseExchangeRate !== ""
+          ? Number(row.purchaseExchangeRate)
+          : 0;
+      return (
+        <div className="flex flex-col items-end gap-0.5">
+          {price && (
+            <span className="text-xs md:text-sm text-slate-900">
+              ${formatPrice(price)}
+            </span>
+          )}
+          <PercentBadge value={value} />
+        </div>
+      );
+    },
   },
   {
     accessorKey: "salePrice",
     header: "Venta",
     meta: { className: "w-[1%] whitespace-nowrap" },
-    cell: (info) => (
-      <span className="text-xs md:text-sm text-slate-900">
-        ${formatPrice(info.getValue<string>())}
-      </span>
-    ),
+    cell: (info) => {
+      const row = info.row.original;
+      const price = info.getValue<string>();
+      const value =
+        row.salesExchangeRate != null && row.salesExchangeRate !== ""
+          ? Number(row.salesExchangeRate)
+          : 0;
+      return (
+        <div className="flex flex-col items-end gap-0.5">
+          <span className="text-xs md:text-sm text-slate-900">
+            ${formatPrice(price)}
+          </span>
+          <PercentBadge value={value} />
+        </div>
+      );
+    },
   },
   {
     accessorKey: "exchangeRate",

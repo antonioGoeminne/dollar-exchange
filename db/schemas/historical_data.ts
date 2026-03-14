@@ -17,4 +17,16 @@ export const historicalData = pgTable("historical_Data", {
   ),
   salesPrice: numeric("sales_price", { precision: 18, scale: 4 }),
   purchasePrice: numeric("purchase_price", { precision: 18, scale: 4 }),
+  purchaseExchangeRate: numeric("purchase_exchange_rate", {
+    precision: 18,
+    scale: 4,
+  }),
+  salesExchangeRate: numeric("sales_exchange_rate", {
+    precision: 18,
+    scale: 4,
+  }),
+  totalExchangeRate: numeric("total_exchange_rate", {
+    precision: 18,
+    scale: 4,
+  }),
 });
