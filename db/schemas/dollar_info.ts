@@ -4,6 +4,7 @@ import {
   integer,
   numeric,
   pgTable,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -28,4 +29,5 @@ export const dollarInfo = pgTable("dollar_info", {
   salePrice: numeric("sale_price", { precision: 18, scale: 4 }),
   refName: varchar("ref_name", { length: 255 }),
   ranking: integer("ranking"),
+  description: text("description"),
 });

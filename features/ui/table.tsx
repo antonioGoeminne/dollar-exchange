@@ -45,7 +45,7 @@ export function Table<T>({
                       return (
                         <th
                           key={header.id}
-                          className={`px-1 md:px-4 py-3 align-middle ${getAlignClass(meta)} ${meta?.className ?? ""}`}
+                          className={`px-2 md:px-4 py-3 align-middle ${getAlignClass(meta)} ${meta?.className ?? ""}`}
                         >
                           {header.isPlaceholder
                             ? null
@@ -72,7 +72,7 @@ export function Table<T>({
                       return (
                         <td
                           key={cell.id}
-                          className={`whitespace-nowrap px-2 md:px-4 py-2 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
+                          className={`whitespace-nowrap px-2 md:px-4 py-3 ${getAlignClass(meta)} ${meta?.className ?? ""}`}
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
