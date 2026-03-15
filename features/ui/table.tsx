@@ -35,7 +35,7 @@ export function Table<T>({
         <div className="rounded-md shadow-sm">
           <div className="overflow-hidden rounded-md border border-slate-200/80 dark:border-slate-600/80 bg-white/80 dark:bg-slate-800/90 backdrop-blur">
             <table className="min-w-full border-collapse text-sm">
-              <thead className="bg-white dark:bg-slate-800/95 border-b border-slate-200/70 dark:border-slate-600/70 text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <thead className="bg-white dark:bg-slate-800/95 border-b border-slate-200/70 dark:border-slate-600/70 text-[11px] lg:text-xs font-semibold text-slate-500 dark:text-slate-400">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
