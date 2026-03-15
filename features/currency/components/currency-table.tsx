@@ -152,6 +152,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export function CurrencyTable({ data: defaultData }: { data: Dollar[] }) {
   const { data } = useSWR("/api/dollar", fetcher, {
     fallbackData: defaultData,
+    refreshInterval: 30 * 1000, // every 30 seconds
   });
 
   return <Table<Dollar> data={data as unknown as Dollar[]} columns={columns} />;
