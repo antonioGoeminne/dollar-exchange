@@ -33,9 +33,9 @@ export function Table<T>({
     <div className="w-full overflow-x-auto">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-md shadow-sm">
-          <div className="overflow-hidden rounded-md border border-slate-200/80 bg-white/80 backdrop-blur">
+          <div className="overflow-hidden rounded-md border border-slate-200/80 dark:border-slate-600/80 bg-white/80 dark:bg-slate-800/90 backdrop-blur">
             <table className="min-w-full border-collapse text-sm">
-              <thead className="bg-white border-b border-slate-200/70 text-xs font-semibold text-slate-500">
+              <thead className="bg-white dark:bg-slate-800/95 border-b border-slate-200/70 dark:border-slate-600/70 text-xs font-semibold text-slate-500 dark:text-slate-400">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -59,11 +59,11 @@ export function Table<T>({
                   </tr>
                 ))}
               </thead>
-              <tbody className="divide-y divide-neutral-100/80">
+              <tbody className="divide-y divide-neutral-100/80 dark:divide-slate-600/80">
                 {table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="bg-white/80 transition-colors hover:bg-neutral-50/80 relative"
+                    className="bg-white/80 dark:bg-slate-800/80 transition-colors hover:bg-neutral-50/80 dark:hover:bg-slate-700/80 relative"
                   >
                     {row.getVisibleCells().map((cell) => {
                       const meta = cell.column.columnDef.meta as

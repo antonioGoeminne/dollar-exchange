@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 import { Header } from "@/features/layout/header";
 
 const geistSans = Geist({
@@ -24,12 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
+        <ThemeProvider
+          attribute={"data-theme"}
+          defaultTheme="system"
+          enableSystem
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
