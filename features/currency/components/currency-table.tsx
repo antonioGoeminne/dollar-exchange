@@ -36,8 +36,9 @@ function PercentBadge({ value = 0 }: { value: number }) {
       strokeWidth={1.5}
       stroke="currentColor"
       className="size-3"
+      aria-hidden
+      role="presentation"
     >
-      <title>Arrow down</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -52,8 +53,9 @@ function PercentBadge({ value = 0 }: { value: number }) {
       strokeWidth="1.5"
       stroke="currentColor"
       className="size-3"
+      aria-hidden
+      role="presentation"
     >
-      <title>Arrow up</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
