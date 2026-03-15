@@ -24,10 +24,10 @@ function PercentBadge({ value = 0 }: { value: number }) {
   const isZero = value === 0;
   const isNegative = value < 0;
   const color = isZero
-    ? "text-slate-500"
+    ? "text-slate-500 dark:text-slate-400"
     : isNegative
-      ? "text-red-500"
-      : "text-emerald-500";
+      ? "text-red-500 dark:text-red-400"
+      : "text-emerald-500 dark:text-emerald-400";
   const arrow = isZero ? null : isNegative ? (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ function PercentBadge({ value = 0 }: { value: number }) {
 
   return (
     <span
-      className={`inline-flex items-center justify-end gap-0.5 text-xs font-light tabular-nums ${color}`}
+      className={`inline-flex items-center justify-end gap-0.5 text-[11px] lg:text-xs font-light tabular-nums ${color}`}
     >
       {arrow != null && <span aria-hidden>{arrow}</span>}
       {display}
@@ -81,10 +81,10 @@ const columns: ColumnDef<Dollar>[] = [
       const coin = row.original;
       return (
         <div className="flex flex-col gap-0.5">
-          <span className=" text-xs lg:text-sm  font-semibold text-slate-700">
+          <span className="text-xs lg:text-sm font-semibold text-slate-700 dark:text-slate-200">
             {coin.name}
           </span>
-          <span className="text-[11px] lg:text-xs font-semibold text-slate-400">
+          <span className="text-[11px] lg:text-xs font-semibold text-slate-400 dark:text-slate-500">
             {coin.description}
           </span>
         </div>
@@ -105,7 +105,7 @@ const columns: ColumnDef<Dollar>[] = [
       return (
         <div className="flex flex-col items-end gap-0.5">
           {price && (
-            <span className=" text-xs lg:text-sm  text-slate-900">
+            <span className="text-xs lg:text-sm text-slate-900 dark:text-slate-100">
               ${formatPrice(price)}
             </span>
           )}
@@ -127,7 +127,7 @@ const columns: ColumnDef<Dollar>[] = [
           : 0;
       return (
         <div className="flex flex-col items-end gap-0.5">
-          <span className=" text-xs lg:text-sm  font-semibold text-slate-900">
+          <span className="text-xs lg:text-sm font-semibold text-slate-900 dark:text-slate-100">
             ${formatPrice(price)}
           </span>
           <PercentBadge value={value} />

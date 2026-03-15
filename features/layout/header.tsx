@@ -8,7 +8,7 @@ export const Header = () => {
           src="/logo-dollar.webp"
           alt="logo"
           fill
-          className="md:object-contain object-cover"
+          className="md:object-contain object-cover dark:invert"
         />
       </div>
     </div>

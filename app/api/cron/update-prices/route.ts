@@ -1,4 +1,5 @@
 import { asc, eq } from "drizzle-orm";
+import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 import { dollarInfo } from "@/db/schemas/dollar_info";
 import { historicalData } from "@/db/schemas/historical_data";
@@ -45,7 +46,7 @@ export async function GET() {
       startDate: startOfYesterday,
       endDate: endOfYesterday,
     });
-    console.log("historical", JSON.stringify(historical, null, 2));
+
     for (const dollarPrice of dollarPrices) {
       const historicalPrice = historical.find(
         (h) => h.dollarInfoId === dollarPrice.id,
@@ -101,6 +102,7 @@ export async function GET() {
               : null,
         });
       }
+      revalidateTag("dollar-prices", "max");
     }
 
     return NextResponse.json({ dollarPrices, historical });
